@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="queryBtn" onclick="query()">查询</button>
+		<script src="jquery-3.5.1.min.js" type="text/javascript" charset="UTF-8"></script>
+		<script type="text/javascript">
+			function query(){
+				yourajax({
+					url:"emps.json",
+					type:"GET",
+		            success:function(res){
+					for(i in res){
+						let emp=res[i]
+						console.log(emp.ename)
+					}
+					}
+				})
+			}
+			
+			
+			function yourajax(object){//callback 回调函数
+				var xhr=new XMLHttpRequest()
+				xhr.onreadystatechange=function(){
+					if(xhr.readyState==4 && xhr.status==200){
+						var data=JSON.parse(xhr.response)
+						object.success(data)
+					}
+				}
+				xhr.open(object.type,object.url)
+				xhr.send()
+			}
+			
+			
+			function myajax(object,callback){//callback 回调函数
+				var xhr=new XMLHttpRequest()
+				xhr.onreadystatechange=function(){
+					if(xhr.readyState==4 && xhr.status==200){
+						var data=JSON.parse(xhr.response)
+						callback(data)
+					}
+				}
+				xhr.open(object.type,object.url)
+				xhr.send()
+			}
+		</script>
+	</body>
+</html>
