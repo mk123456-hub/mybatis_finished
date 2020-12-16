@@ -1,6 +1,5 @@
 package com.abc.controller.report;
 
-import com.abc.common.Comm;
 import com.abc.common.Res;
 import com.abc.controller.SpringIOC;
 import com.abc.controller.vo.DeptEmpVO;

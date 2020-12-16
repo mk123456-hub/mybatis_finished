@@ -1,6 +1,5 @@
 package com.abc.controller;
 
-import com.abc.common.Comm;
 import com.abc.dao.entity.Emp;
 import com.abc.service.iservice.IEmpService;
 

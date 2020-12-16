@@ -25,4 +25,37 @@ public class Emp {
         this.hiredate = hiredate;
         this.sal = sal;
     }
+
+
+    public int getEmpno() {
+        return empno;
+    }
+
+    public void setEmpno(int empno) {
+        this.empno = empno;
+    }
+
+    public String getEname() {
+        return ename;
+    }
+
+    public void setEname(String ename) {
+        this.ename = ename;
+    }
+
+    public Date getHiredate() {
+        return hiredate;
+    }
+
+    public void setHiredate(Date hiredate) {
+        this.hiredate = hiredate;
+    }
+
+    public BigDecimal getSal() {
+        return sal;
+    }
+
+    public void setSal(BigDecimal sal) {
+        this.sal = sal;
+    }
 }

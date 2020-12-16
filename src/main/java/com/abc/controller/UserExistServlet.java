@@ -1,5 +1,4 @@
 package com.abc.controller;
-import com.abc.common.Comm;
 import com.abc.common.Res;
 
 import com.abc.service.iservice.IUserService;
@@ -20,7 +19,7 @@ public class UserExistServlet extends HttpServlet {
         System.out.println("-----------------------");
         String username = req.getParameter("username");
         //2-处理
-        IUserService userService = (IUserService)SpringIOC.getSpring().getBean("userService");
+        IUserService userService = (IUserService) SpringIOC.getSpring().getBean("userService");
         System.out.println(userService);
         Res res = null;
         try {

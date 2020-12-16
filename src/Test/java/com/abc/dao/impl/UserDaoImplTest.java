@@ -1,6 +1,5 @@
 package com.abc.dao.impl;
 
-import com.abc.common.Comm;
 import com.abc.common.Res;
 import com.abc.controller.SpringIOC;
 import com.abc.dao.util.DBUtil;
