@@ -3,7 +3,7 @@ package com.abc.controller;
 import com.abc.common.Comm;
 import com.abc.common.Res;
 import com.abc.dao.entity.User;
-import com.abc.service.factory.ServiceFactory;
+
 import com.abc.service.iservice.IUserService;
 import com.alibaba.fastjson.JSON;
 
@@ -29,7 +29,7 @@ public class UserLoginServlet extends HttpServlet {
 
         //2.处理
         User user=new User(username,password);
-        IUserService userService= (IUserService) ServiceFactory.getInstance(Comm.USER);
+        IUserService userService= (IUserService) SpringIOC.getSpring().getBean("userService");
         Res<User> res= null;
 
         try {

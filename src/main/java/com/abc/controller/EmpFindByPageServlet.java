@@ -2,7 +2,6 @@ package com.abc.controller;
 
 import com.abc.common.Comm;
 import com.abc.dao.entity.Emp;
-import com.abc.service.factory.ServiceFactory;
 import com.abc.service.iservice.IEmpService;
 
 import javax.servlet.ServletException;
@@ -18,8 +17,8 @@ import java.util.List;
  * @Author Administrator
  * @create 2020/12/2 0002 21:47
  */
-@WebServlet(urlPatterns = {"/EmpFindByPageServlet","/empbypage"})
-//@WebServlet(name = "EmpFindByPageServlet",urlPatterns = {"/empbypage"})
+//@WebServlet(urlPatterns = {"/EmpFindByPageServlet","/empbypage"})
+@WebServlet(name = "EmpFindByPageServlet",urlPatterns = {"/empbypage"})
 public class EmpFindByPageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             //1.取值
@@ -35,7 +34,7 @@ public class EmpFindByPageServlet extends HttpServlet {
             }
 
             //2.处理
-            IEmpService empService = (IEmpService) ServiceFactory.getInstance(Comm.EMP);
+            IEmpService empService = (IEmpService) SpringIOC.getSpring().getBean("empService");
             List<Emp> emps = null;
             try {
                 emps = empService.findByPage(page, size);

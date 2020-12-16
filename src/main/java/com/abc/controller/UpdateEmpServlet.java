@@ -2,7 +2,7 @@ package com.abc.controller;
 
 import com.abc.common.Comm;
 import com.abc.dao.entity.Emp;
-import com.abc.service.factory.ServiceFactory;
+
 import com.abc.service.iservice.IEmpService;
 
 import javax.servlet.ServletException;
@@ -35,7 +35,7 @@ public class UpdateEmpServlet extends HttpServlet {
         System.out.println(hiredate);
         BigDecimal sal=new BigDecimal(request.getParameter("sal"));
 
-        IEmpService empService= (IEmpService) ServiceFactory.getInstance(Comm.EMP);
+        IEmpService empService= (IEmpService) SpringIOC.getSpring().getBean("empService");
         Emp emp=new Emp(empno,ename,hiredate,sal);
         System.out.println(emp);
         try {

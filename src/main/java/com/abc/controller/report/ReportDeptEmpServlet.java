@@ -2,9 +2,9 @@ package com.abc.controller.report;
 
 import com.abc.common.Comm;
 import com.abc.common.Res;
+import com.abc.controller.SpringIOC;
 import com.abc.controller.vo.DeptEmpVO;
 import com.abc.service.dto.DeptEmpDTO;
-import com.abc.service.factory.ServiceFactory;
 import com.abc.service.iservice.IReportService;
 import com.alibaba.fastjson.JSON;
 
@@ -30,7 +30,7 @@ public class ReportDeptEmpServlet extends HttpServlet {
         BigDecimal maxsal=new BigDecimal(request.getParameter("max"));
 
         DeptEmpVO deptEmpVO=new DeptEmpVO(deptno,minsal,maxsal);
-        IReportService reportService= (IReportService) ServiceFactory.getInstance(Comm.DEPT_EMP_REPORT);
+        IReportService reportService= (IReportService) SpringIOC.getSpring().getBean("deptempService");
         Res<List<DeptEmpDTO>> res=reportService.makeReportForDeptEmp(deptEmpVO);
 
         PrintWriter out=response.getWriter();

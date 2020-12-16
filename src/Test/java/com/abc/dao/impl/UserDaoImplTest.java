@@ -2,8 +2,9 @@ package com.abc.dao.impl;
 
 import com.abc.common.Comm;
 import com.abc.common.Res;
+import com.abc.controller.SpringIOC;
 import com.abc.dao.util.DBUtil;
-import com.abc.service.factory.ServiceFactory;
+
 import com.abc.service.iservice.IUserService;
 import junit.framework.TestCase;
 
@@ -17,7 +18,7 @@ public class UserDaoImplTest extends TestCase {
 
     public void testExist() throws Exception{
         Connection con=DBUtil.getConnection();
-        IUserService userService= (IUserService) ServiceFactory.getInstance(Comm.USER);
+        IUserService userService= (IUserService) SpringIOC.getSpring().getBean("userService");
         Res res=userService.userExist("scot");
         System.out.println(res.toString());
     }

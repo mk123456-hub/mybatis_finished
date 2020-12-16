@@ -1,25 +1,44 @@
 package com.abc.service.impl;
-import com.abc.common.Comm;
+
 import com.abc.common.Res;
 import com.abc.dao.entity.User;
-import com.abc.dao.util.DBUtil;
-import com.abc.service.factory.ServiceFactory;
 import com.abc.service.iservice.IUserService;
-import junit.framework.TestCase;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.sql.Connection;
+import static org.junit.Assert.*;
 
 /**
  * @Author Administrator
- * @create 2020/12/2 0002 0:01
+ * @create 2020/12/16 0016 14:41
  */
-public class UserServiceImplTest extends TestCase {
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:applicationContext.xml"})
+public class UserServiceImplTest {
+    @Autowired
+    IUserService userService;
 
-    public void testUserExist() throws Exception{
-        Connection con= DBUtil.getConnection();
-        IUserService userService= (IUserService) ServiceFactory.getInstance(Comm.USER);
-        Res res=userService.userExist("scot");
-        System.out.println(res.toString());
+    @Test
+    public void userExist() {
+        Res root = null;
+        try {
+            root = userService.userExist("root");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(root);
     }
 
+    @Test
+    public void login() {
+        User user=new User("root","1234");
+        try {
+            System.out.println(userService.login(user));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

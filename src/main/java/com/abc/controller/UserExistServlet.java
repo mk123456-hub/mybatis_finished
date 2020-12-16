@@ -1,7 +1,7 @@
 package com.abc.controller;
 import com.abc.common.Comm;
 import com.abc.common.Res;
-import com.abc.service.factory.ServiceFactory;
+
 import com.abc.service.iservice.IUserService;
 import com.alibaba.fastjson.JSON;
 import javax.servlet.ServletException;
@@ -17,12 +17,15 @@ public class UserExistServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //1-取值
+        System.out.println("-----------------------");
         String username = req.getParameter("username");
         //2-处理
-        IUserService userService = (IUserService) ServiceFactory.getInstance(Comm.USER);
+        IUserService userService = (IUserService)SpringIOC.getSpring().getBean("userService");
+        System.out.println(userService);
         Res res = null;
         try {
             res = userService.userExist(username);
+            System.out.println(res);
         } catch (Exception e) {
             e.printStackTrace();
         }

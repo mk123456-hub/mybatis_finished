@@ -1,39 +1,40 @@
 $(function(){
-	$("#username").blur(function(){
-		$.ajax({
-			url:"http://localhost:8080/userexist",
-			type:"post",
-			data:{
-				"username":$("#username").val()
-			},
-			success:function(res){
-				console.log(res)
-				let emp=JSON.parse(res)
-				if(emp.status==201){
-					$("#u_msg").css("color","green").text(emp.msg)
-				}else{
-					$("#u_msg").css("color","red").text(emp.msg)
-				}
-			}
-		})
-	})
-	$("#loginBtn").click(function(){
-		$.ajax({
-			url:"http://localhost:8080/login",
-			type:"post",
-			data:{
-				"username":$("#username").val(),
-				"password":$("#password").val()
-			},
-			success:function(res){
-				console.log(typeof(res))
-				let emp=JSON.parse(res)
-				if(emp.status==200){
-					window.location.href="http://localhost:8080/empbypage"
-				}else{
-					$("#errorMsg").css("color","red").text(emp.msg)
-				}
-			}
-		})
-	})
+    $("#username").blur(function(){
+        $.ajax({
+            url:"http://localhost:8080/userexist",
+            type:"post",
+            data:{
+                "username":$("#username").val()
+            },
+            success:function(res){
+                console.log(res)
+                let emp=JSON.parse(res)
+                if(emp.status==201){
+                    $("#u_msg").css("color","green").text(emp.msg)
+                }else{
+                    $("#u_msg").css("color","red").text(emp.msg)
+                }
+            }
+        })
+    })
+    $("#loginBtn").click(function(){
+        $.ajax({
+            url:"http://localhost:8080/login",
+            type:"post",
+            data:{
+                "username":$("#username").val(),
+                "password":$("#password").val()
+            },
+            success:function(res){
+                console.log(typeof(res))
+                let emp=JSON.parse(res)
+                if(emp.status==200){
+                    window.location.href="http://localhost:8080/empbypage"
+                    // window.location.href="http://localhost:8080/empbypage"
+                }else{
+                    $("#errorMsg").css("color","red").text(emp.msg)
+                }
+            }
+        })
+    })
 })

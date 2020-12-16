@@ -3,6 +3,7 @@ package com.abc.dao.impl;
 import com.abc.dao.entity.User;
 import com.abc.dao.idao.IUserDao;
 import com.abc.dao.util.DBUtil;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,7 @@ import java.sql.ResultSet;
  * @Author Administrator
  * @create 2020/12/1 0001 21:37
  */
+@Repository("iUserDao")
 public class UserDaoImpl implements IUserDao {
 
     @Override

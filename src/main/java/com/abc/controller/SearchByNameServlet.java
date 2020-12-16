@@ -2,7 +2,7 @@ package com.abc.controller;
 
 import com.abc.common.Comm;
 import com.abc.dao.entity.Emp;
-import com.abc.service.factory.ServiceFactory;
+
 import com.abc.service.iservice.IEmpService;
 
 import javax.servlet.ServletException;
@@ -24,7 +24,7 @@ public class SearchByNameServlet extends HttpServlet {
         //1.取值
         String ename=request.getParameter("ename");
         //2.处理
-        IEmpService empService= (IEmpService) ServiceFactory.getInstance(Comm.EMP);
+        IEmpService empService= (IEmpService) SpringIOC.getSpring().getBean("empService");
         List<Emp> emps= null;
         try {
             emps = empService.findByName(ename);

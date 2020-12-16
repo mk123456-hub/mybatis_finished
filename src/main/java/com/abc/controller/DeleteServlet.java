@@ -2,7 +2,6 @@ package com.abc.controller;
 
 import com.abc.common.Comm;
 import com.abc.dao.entity.Emp;
-import com.abc.service.factory.ServiceFactory;
 import com.abc.service.iservice.IEmpService;
 import com.abc.service.iservice.IUserService;
 
@@ -32,7 +31,7 @@ public class DeleteServlet extends HttpServlet {
         System.out.println(empno);
 
         //2.处理
-        IEmpService empService= (IEmpService) ServiceFactory.getInstance(Comm.EMP);
+        IEmpService empService= (IEmpService) SpringIOC.getSpring().getBean("empService");
         Emp emp=new Emp();
         emp.setEmpno(empno);
         try {

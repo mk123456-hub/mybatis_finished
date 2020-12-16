@@ -4,6 +4,7 @@ import com.abc.dao.entity.Dept;
 import com.abc.dao.entity.Emp;
 import com.abc.dao.idao.IDeptDao;
 import com.abc.dao.util.DBUtil;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +16,7 @@ import java.util.List;
  * @Author Administrator
  * @create 2020/12/7 0007 15:34
  */
+@Repository("deptDao")
 public class DeptDaoImpl implements IDeptDao {
     @Override
     public List<Dept> findAll() throws Exception{

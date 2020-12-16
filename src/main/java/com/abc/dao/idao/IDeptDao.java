@@ -1,6 +1,7 @@
 package com.abc.dao.idao;
 
 import com.abc.dao.entity.Dept;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

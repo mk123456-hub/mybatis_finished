@@ -2,7 +2,6 @@ package com.abc.controller;
 
 import com.abc.common.Comm;
 import com.abc.dao.entity.Emp;
-import com.abc.service.factory.ServiceFactory;
 import com.abc.service.iservice.IEmpService;
 
 import javax.servlet.ServletException;
@@ -26,7 +25,7 @@ public class SearchByEmpnoServlet extends HttpServlet {
         int empno=Integer.parseInt(request.getParameter("empno"));
         //2.处理
 
-        IEmpService empService= (IEmpService) ServiceFactory.getInstance(Comm.EMP);
+        IEmpService empService= (IEmpService) SpringIOC.getSpring().getBean("empService");
         try {
             List<Emp> emps=new ArrayList<>();
             Emp emp= empService.findById(empno);
@@ -51,7 +50,7 @@ public class SearchByEmpnoServlet extends HttpServlet {
         int empno=Integer.parseInt(request.getParameter("empno"));
         //2.处理
 
-        IEmpService empService= (IEmpService) ServiceFactory.getInstance(Comm.EMP);
+        IEmpService empService= (IEmpService) SpringIOC.getSpring().getBean("empService");
         try {
             Emp emp= empService.findById(empno);
             if(emp!=null){

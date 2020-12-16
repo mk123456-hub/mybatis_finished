@@ -4,6 +4,7 @@ import com.abc.controller.vo.DeptEmpVO;
 import com.abc.dao.idao.IReportDao;
 import com.abc.dao.util.DBUtil;
 import com.abc.service.dto.DeptEmpDTO;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +17,7 @@ import java.util.concurrent.locks.Condition;
  * @Author Administrator
  * @create 2020/12/7 0007 21:26
  */
+@Repository("reportDao")
 public class ReportDeptEmpDaoImpl implements IReportDao {
     @Override
     public List<DeptEmpDTO> makeReportForDeptEmp(DeptEmpVO deptEmpVO) throws Exception{
