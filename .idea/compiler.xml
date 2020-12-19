@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="spring_maven" />
+        <module name="spring_maven_twow" />
         <module name="spring_maven_two" />
       </profile>
     </annotationProcessing>
