@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.idao.UserDao1">
+    <!--设置domain类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称不致，此处一定要！-->
+    <resultMap id="UserResultMap" type="com.abc.dao.entity.User">
+        <id column="ID" property="id" jdbcType="INTEGER" />
+        <result column="USERNAME" property="username" jdbcType="VARCHAR" />
+        <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+        <result column="PRI" property="pri" jdbcType="INTEGER" />
+    </resultMap>
+    <!--SQL片段-->
+    <sql id="AllUserColumns">
+        id,username,password,pri
+    </sql>
+    <select id="exist" parameterType="map" resultType="integer">
+        select count(1)
+        from user
+        where username=#{username}
+    </select>
+    <select id="login" parameterType="com.abc.dao.entity.User" resultMap="UserResultMap">
+        select <include refid="AllUserColumns"/>
+        from user
+        where username=#{username} and password=#{password}
+    </select>
+</mapper>
+
