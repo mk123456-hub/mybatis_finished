@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -11,10 +12,8 @@ import java.util.Date;
  * @Author Administrator
  * @create 2020/12/2 0002 22:00
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Emp {
+
+public class Emp implements Serializable {
     private int empno;
     private String ename;
     private Date hiredate;
@@ -26,6 +25,15 @@ public class Emp {
         this.sal = sal;
     }
 
+    public Emp(int empno, String ename, Date hiredate, BigDecimal sal) {
+        this.empno = empno;
+        this.ename = ename;
+        this.hiredate = hiredate;
+        this.sal = sal;
+    }
+
+    public Emp() {
+    }
 
     public int getEmpno() {
         return empno;
@@ -57,5 +65,15 @@ public class Emp {
 
     public void setSal(BigDecimal sal) {
         this.sal = sal;
+    }
+
+    @Override
+    public String toString() {
+        return "Emp{" +
+                "empno=" + empno +
+                ", ename='" + ename + '\'' +
+                ", hiredate=" + hiredate +
+                ", sal=" + sal +
+                '}';
     }
 }

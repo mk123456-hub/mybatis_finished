@@ -5,27 +5,26 @@ import com.abc.common.Res;
 import com.abc.common.ResEnum;
 import com.abc.controller.vo.DelVO;
 import com.abc.dao.entity.Emp;
-import com.abc.dao.idao.IEmpDao;
+import com.abc.dao.idao.EmpDao;
 import com.abc.service.iservice.IEmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
-/**
- * @Author Administrator
- * @create 2020/12/2 0002 22:11
- */
 @Service("empService")
 public class EmpServiceImpl implements IEmpService {
     @Autowired
-    IEmpDao empDao;
+    EmpDao empDao;
+
 
     @Override
     public List<Emp> findByPage(int page, int size) {
-        List<Emp>  emps=null;
+        List<Emp> emps = null;
         try {
-            emps=empDao.findByPage((page-1)*size,size);
+            emps = empDao.findByPage((page - 1) * size, size);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -33,10 +32,10 @@ public class EmpServiceImpl implements IEmpService {
     }
 
     @Override
-    public List<Emp> findByName(String name) throws Exception{
-        List<Emp>  emps=null;
+    public List<Emp> findByName(String ename) {
+        List<Emp> emps = null;
         try {
-            emps=empDao.findByName(name);
+            emps = empDao.findByName(ename);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -44,63 +43,77 @@ public class EmpServiceImpl implements IEmpService {
     }
 
     @Override
-    public Emp findById(Integer id) throws Exception{
-        Emp emp=null;
+    public Emp findById(Integer empno) {
+        Emp emp = null;
         try {
-            emp=empDao.findById(id);
-        }catch (Exception e){
+            emp = empDao.findById(empno);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return emp;
     }
 
     @Override
-    public String delete(Emp emp) throws Exception{
-        String msg=Comm.ERROR;
+    public String delete(Emp emp) {
+        String msg = Comm.ERROR;
         try {
             empDao.delete(emp);
-            msg=Comm.SUCCESS;
-        }catch (Exception e){
-
-        }
-        return msg;
-    }
-
-    @Override
-    public String save(Emp emp) throws Exception{
-        String msg=Comm.ERROR;
-        try {
-            empDao.save(emp);
-            msg=Comm.SUCCESS;
-        }catch (Exception e){
-
-        }
-        return msg;
-    }
-
-    @Override
-    public String update(Emp emp) throws Exception{
-        String msg=Comm.ERROR;
-        try {
-            empDao.update(emp);
-            msg=Comm.SUCCESS;
-        }catch (Exception e){
-
-        }
-        return msg;
-    }
-
-    @Override
-    public Res delBatch(List<DelVO> delVOList) {
-        if(delVOList==null&&delVOList.size()==0){
-            return Res.error(ResEnum.ERROR_PARAMS_IN_DELBATCH);
-        }
-        try {
-            empDao.delBatch(delVOList);
-            return Res.success(ResEnum.SUCCESS_DEL_BATCH);
-        }catch (Exception e){
+            msg = Comm.SUCCESS;
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return Res.error();
+        return msg;
     }
+
+    @Override
+    public String save(Emp emp) {
+        String msg = Comm.ERROR;
+        try {
+            empDao.save(emp);
+            msg = Comm.SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return msg;
+    }
+
+    @Override
+    public String update(Emp emp) {
+        String msg = Comm.ERROR;
+        try {
+            empDao.update(emp);
+            msg = Comm.SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return msg;
+    }
+
+    @Override
+    public Res<List<Emp>> findByDeptno(int deptno) {
+        List<Emp> emps = null;
+        try {
+            emps = empDao.findByDeptno(deptno);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (emps != null && emps.size() > 0) ? Res.success(ResEnum.SUCCESS, emps) : Res.error();
+    }
+
+
+//    @Transactional(isolation = Isolation.READ_COMMITTED,propagation = Propagation.REQUIRED)
+//    @Override
+//    public Res delBatch(List<DelVO> delVOList) {
+//        if(delVOList == null || delVOList.size() == 0){
+//            return Res.error(ResEnum.ERROR_PARAMS_IN_DELBATCH);
+//        }
+//        try {
+//            empDao.delBatch(delVOList);
+//            return Res.success(ResEnum.SUCCESS_DEL_BATCH);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return Res.error();
+//    }
 }
+

@@ -8,14 +8,15 @@ import lombok.NoArgsConstructor;
  * @Author Administrator
  * @create 2020/12/2 0002 14:21
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class User {
     private int id;
     private String username;
     private String password;
     private int pri;
+
+    public User() {
+    }
 
 
     public int getId() {
@@ -59,5 +60,15 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", pri=" + pri +
+                '}';
     }
 }

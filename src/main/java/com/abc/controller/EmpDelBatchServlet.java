@@ -22,14 +22,14 @@ import java.util.List;
 @WebServlet(name = "EmpDelBatchServlet",urlPatterns = {"/empdelbatch"})
 public class EmpDelBatchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String empnos=request.getParameter("empnos");
-        List<DelVO> delVOList= JSON.parseObject(empnos,new TypeReference<List<DelVO>>(){});
-        IEmpService empService= (IEmpService) SpringIOC.getSpring().getBean("empService");
-        Res res=empService.delBatch(delVOList);
-        PrintWriter out=response.getWriter();
-        Object result=JSON.toJSONString(res);
-        out.println(result);
-        out.close();
+//        String empnos=request.getParameter("empnos");
+//        List<DelVO> delVOList= JSON.parseObject(empnos,new TypeReference<List<DelVO>>(){});
+//        IEmpService empService= (IEmpService) SpringIOC.getSpring().getBean("empService");
+//        Res res=empService.delBatch(delVOList);
+//        PrintWriter out=response.getWriter();
+//        Object result=JSON.toJSONString(res);
+//        out.println(result);
+//        out.close();
     }
 
 }

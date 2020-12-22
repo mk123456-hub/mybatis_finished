@@ -18,6 +18,7 @@ public interface IEmpService {
     String delete(Emp emp) throws Exception;
     String save(Emp emp) throws Exception;
     String update(Emp emp) throws Exception;
+    Res<List<Emp>> findByDeptno(int deptno);
 
-    Res delBatch(List<DelVO> delVOList);
+//    Res delBatch(List<DelVO> delVOList);
 }
