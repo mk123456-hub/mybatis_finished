@@ -23,14 +23,7 @@ public class StuDaoTest {
 
     @Test
     public void one2many() {
-        List<Student> students = stuDao.one2many();
-        for(Student student:students){
-            System.out.println(student.getSid()+":"+student.getSname());
-            student.getScores().forEach((score)->{
-                System.out.println(score.getCourse().getCid()+score.getCourse().getCname());
-                System.out.println(score.getScore());
-            });
-        }
+
 
 
     }
