@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.idao.Dept1Dao">
+    <!--设置domain类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称不致，此处一定要！-->
+    <resultMap id="Dept1ResultMap" type="com.abc.dao.entity.Dept1">
+        <id column="DID" property="did" jdbcType="INTEGER" />
+        <result column="DNAME" property="dname" jdbcType="VARCHAR" />
+        <collection property="stus" ofType="com.abc.dao.entity.Student">
+            <id column="SID" property="sid" jdbcType="INTEGER"></id>
+            <result column="DID" property="did" jdbcType="INTEGER"></result>
+            <result column="SNAME" property="sname" jdbcType="VARCHAR"></result>
+        </collection>
+    </resultMap>
+   <select id="findAll" resultMap="Dept1ResultMap">
+       select d.did,d.dname,s.sid,s.sname
+       from t_dept d left join t_student s on d.did=s.did
+   </select>
+</mapper>
