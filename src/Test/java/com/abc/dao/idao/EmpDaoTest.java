@@ -57,8 +57,8 @@ public class EmpDaoTest {
 
     @Test
     public void save() {
-        Emp emp=new Emp("哈哈",new Date(),new BigDecimal("12345"));
-        empDao.save(emp);
+//        Emp emp=new Emp("哈哈",new Date(),new BigDecimal("12345"));
+//        empDao.save(emp);
     }
 
      @Test
@@ -67,12 +67,12 @@ public class EmpDaoTest {
      }
      @Test
      public void saveBath(){
-         List<Emp> emps=Arrays.asList(
-                 new Emp("emp1001",new Date(),new BigDecimal("1234")),
-                 new Emp("emp1002",new Date(),new BigDecimal("1234")),
-                 new Emp("emp1003",new Date(),new BigDecimal("1234"))
-         );
-         System.out.println(empDao.saveBatch(emps));
+//         List<Emp> emps=Arrays.asList(
+//                 new Emp("emp1001",new Date(),new BigDecimal("1234")),
+//                 new Emp("emp1002",new Date(),new BigDecimal("1234")),
+//                 new Emp("emp1003",new Date(),new BigDecimal("1234"))
+//         );
+//         System.out.println(empDao.saveBatch(emps));
      }
      @Test
      public void dycUpdate(){

@@ -11,4 +11,24 @@
         <setting name="useGeneratedKeys" value="true"/>
     </settings>
 
+    <!--
+    plugins在配置文件中的位置必须符合要求，否则会报错，顺序如下:
+    properties?, settings?,
+    typeAliases?, typeHandlers?,
+    objectFactory?,objectWrapperFactory?,
+    plugins?,
+    environments?, databaseIdProvider?, mappers?
+-->
+    <!-- 配置分页插件 -->
+    <plugins>
+        <plugin
+                interceptor="com.github.pagehelper.PageInterceptor">
+            <!--
+           设置数据库类型，支持Oracle,Mysql,MariaDB,SQLite,
+           Hsqldb,PostgreSQL六种数据库
+           -->
+            <property name="helperDialect" value="mysql"/>
+        </plugin>
+    </plugins>
+
 </configuration>

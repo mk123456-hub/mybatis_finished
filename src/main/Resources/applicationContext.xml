@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- 自动扫描注解的bean -->
     <context:component-scan base-package="com.abc"/>
@@ -47,5 +48,36 @@
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
 
+    <!-- 事务核心管理器,封装了所有事务操作. 依赖于连接池 -->
+    <bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+<!--    &lt;!&ndash; 配置事务通知 &ndash;&gt;-->
+<!--    <tx:advice id="txAdvice" transaction-manager="transactionManager">-->
+<!--        <tx:attributes>-->
+<!--            &lt;!&ndash; 以方法为单位,指定方法应用什么事务属性 isolation:隔离级别 propagation:传播行为 read-only:是否只读 &ndash;&gt;-->
+<!--            <tx:method name="insert*" isolation="READ_COMMITTED"-->
+<!--                       propagation="REQUIRED" read-only="false" />-->
+<!--            <tx:method name="delete*" isolation="READ_COMMITTED"-->
+<!--                       propagation="REQUIRED" read-only="false" />-->
+<!--            <tx:method name="update*" isolation="READ_COMMITTED"-->
+<!--                       propagation="REQUIRED" read-only="false" />-->
+<!--            <tx:method name="find*" isolation="READ_COMMITTED"-->
+<!--                       propagation="REQUIRED" read-only="true" />-->
+<!--            <tx:method name="transfer" isolation="READ_COMMITTED"-->
+<!--                       propagation="REQUIRES_NEW" read-only="false" />-->
+<!--        </tx:attributes>-->
+<!--    </tx:advice>-->
+
+<!--    &lt;!&ndash; 配置织入 &ndash;&gt;-->
+<!--    <aop:config>-->
+<!--        &lt;!&ndash; 配置切点表达式:定义在service包和所有子包里的任意类的任意方法的执行 &ndash;&gt;-->
+<!--        <aop:pointcut expression="execution(* com.abc.service.impl..*.*(..))" id="txPc" />-->
+<!--        &lt;!&ndash; 配置切面 : 通知+切点 advice-ref:通知的名称 pointcut-ref:切点的名称 &ndash;&gt;-->
+<!--        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPc" />-->
+<!--    </aop:config>-->
+    <!-- 开启使用注解管理aop事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
 </beans>

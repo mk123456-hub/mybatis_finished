@@ -6,7 +6,7 @@
     <resultMap id="EmpResultMap" type="com.abc.dao.entity.Emp">
         <id column="EMPNO" property="empno" jdbcType="INTEGER" />
         <result column="ENAME" property="ename" jdbcType="VARCHAR" />
-        <result column="HIREDATE" property="hiredate" jdbcType="DATE" />
+        <result column="HIREDATE" property="hiredate" jdbcType="VARCHAR" />
         <result column="SAL" property="sal" jdbcType="DECIMAL" />
     </resultMap>
     <!--SQL片段-->

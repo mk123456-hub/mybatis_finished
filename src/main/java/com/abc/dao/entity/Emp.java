@@ -16,16 +16,16 @@ import java.util.Date;
 public class Emp implements Serializable {
     private int empno;
     private String ename;
-    private Date hiredate;
+    private String hiredate;
     private BigDecimal sal;
 
-    public Emp(String ename, Date hiredate, BigDecimal sal) {
+    public Emp(String ename, String hiredate, BigDecimal sal) {
         this.ename = ename;
         this.hiredate = hiredate;
         this.sal = sal;
     }
 
-    public Emp(int empno, String ename, Date hiredate, BigDecimal sal) {
+    public Emp(int empno, String ename, String hiredate, BigDecimal sal) {
         this.empno = empno;
         this.ename = ename;
         this.hiredate = hiredate;
@@ -51,11 +51,11 @@ public class Emp implements Serializable {
         this.ename = ename;
     }
 
-    public Date getHiredate() {
+    public String getHiredate() {
         return hiredate;
     }
 
-    public void setHiredate(Date hiredate) {
+    public void setHiredate(String hiredate) {
         this.hiredate = hiredate;
     }
 

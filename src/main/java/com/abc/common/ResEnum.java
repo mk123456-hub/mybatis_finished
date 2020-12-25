@@ -9,8 +9,12 @@ public enum ResEnum {
     SUCCESS(200,"success"),
     SUCCESS_USER_EXIST(201,"user exist success"),
     SUCCESS_DEL_BATCH(202,"delete batch success"),
+    SUCCESS_UPDATE_BATCH(202,"update batch success"),
+    SUCCESS_SAVE_BATCH(202,"save batch success"),
     ERROR_USER_EXIST(501,"user exist error"),
     ERROR_PARAMS_IN_DELBATCH(501,"param can't be null"),
+    ERROR_PARAMS_IN_UPDATEBATCH(501,"param can't be null"),
+    ERROR_PARAMS_IN_SAVEBATCH(501,"param can't be null"),
     ERROR(500,"error");
 
     private int status;

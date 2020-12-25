@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service("empService")
 public class EmpServiceImpl implements IEmpService {
     @Autowired
@@ -55,38 +57,18 @@ public class EmpServiceImpl implements IEmpService {
 
     @Override
     public String delete(Emp emp) {
-        String msg = Comm.ERROR;
-        try {
-            empDao.delete(emp);
-            msg = Comm.SUCCESS;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return msg;
+        int flag=empDao.delete(emp);
+        return flag>0 ? Comm.SUCCESS:Comm.ERROR;
     }
 
     @Override
     public String save(Emp emp) {
-        String msg = Comm.ERROR;
-        try {
-            empDao.save(emp);
-            msg = Comm.SUCCESS;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return msg;
+        int flag=empDao.save(emp);
+        return flag>0 ? Comm.SUCCESS:Comm.ERROR;
     }
-
-    @Override
     public String update(Emp emp) {
-        String msg = Comm.ERROR;
-        try {
-            empDao.update(emp);
-            msg = Comm.SUCCESS;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return msg;
+        int flag=empDao.update(emp);
+        return flag>0 ? Comm.SUCCESS:Comm.ERROR;
     }
 
     @Override
@@ -98,6 +80,33 @@ public class EmpServiceImpl implements IEmpService {
             e.printStackTrace();
         }
         return (emps != null && emps.size() > 0) ? Res.success(ResEnum.SUCCESS, emps) : Res.error();
+    }
+
+    @Override
+    public Res delBatch(List<DelVO> delVOList) {
+        if(delVOList==null || delVOList.size()==0){
+            return Res.error(ResEnum.ERROR_PARAMS_IN_DELBATCH);
+        }
+        int flag = empDao.delBatch(delVOList.stream().map(x -> x.getEmpno()).collect(Collectors.toList()));
+        return flag>0 ? Res.success(ResEnum.SUCCESS_DEL_BATCH):Res.error();
+    }
+
+    @Override
+    public Res saveBatch(List<Emp> emps) {
+        if(emps==null || emps.size()==0){
+            return Res.error(ResEnum.ERROR_PARAMS_IN_SAVEBATCH);
+        }
+        int flag = empDao.saveBatch(emps);
+        return flag>0 ? Res.success(ResEnum.SUCCESS_SAVE_BATCH):Res.error();
+    }
+
+    @Override
+    public Res dymicUpdateBatch(Emp emp) {
+        if(emp==null){
+            return Res.error(ResEnum.ERROR_PARAMS_IN_UPDATEBATCH);
+        }
+        int flag = empDao.dymicUpdateBatch(emp);
+        return flag>0 ? Res.success(ResEnum.SUCCESS_UPDATE_BATCH):Res.error();
     }
 
 

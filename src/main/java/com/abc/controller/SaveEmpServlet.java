@@ -23,13 +23,16 @@ import java.util.Date;
 @WebServlet(name = "SaveEmpServlet",urlPatterns = {"/saveemp"})
 public class SaveEmpServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
         String ename=request.getParameter("ename");
-        Date hiredate=null;
-        try {
-            hiredate = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("hiredate"));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        System.out.println(ename);
+        String hiredate=request.getParameter("hiredate");
+//        Date hiredate=null;
+//        try {
+//            hiredate = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("hiredate"));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
         System.out.println(hiredate);
         BigDecimal sal=new BigDecimal(request.getParameter("sal"));
 

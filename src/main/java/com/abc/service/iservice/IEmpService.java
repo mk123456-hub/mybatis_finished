@@ -20,5 +20,7 @@ public interface IEmpService {
     String update(Emp emp) throws Exception;
     Res<List<Emp>> findByDeptno(int deptno);
 
-//    Res delBatch(List<DelVO> delVOList);
+    Res delBatch(List<DelVO> delVOList);
+    Res saveBatch(List<Emp> emps);
+    Res dymicUpdateBatch(Emp emp);
 }
